@@ -6,7 +6,7 @@
 'use strict';
 
 var Thing = require('../api/thing/thing.model');
-
+var Gem = require('../api/gem/gem.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -29,3 +29,22 @@ Thing.find({}).remove(function() {
     info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
   });
 });
+
+
+// Create gems if missing
+// Provide list of gems we would like to track
+var gemNames = ['knapsack'];
+
+for (var index in gemNames) {
+  var gemName = gemNames[index];
+
+  Gem.find({ name: gemName }, function(err, gems) {
+    if (err) {
+      return err;
+    } else if (gems.length == 0) {
+      Gem.create({ name: gemName });
+    } else {
+      console.log('Gem ' + gemName + ' already exists.');
+    }
+  });
+}
