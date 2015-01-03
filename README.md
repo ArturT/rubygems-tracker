@@ -26,3 +26,20 @@ Installing the OpenShift Client Tools
 
     # run server
     $ grunt serve
+
+## Deployment
+
+### Set up deployment repo
+
+    $ cd dist
+    $ git clone https://github.com/ArturT/rubygems-tracker-dist
+
+### Deploy to OpenShift
+
+    $ grunt build
+    $ cd dist
+    $ git commit -am "Relase new build"
+    $ git push openshift master
+
+    # story copy on github repo https://github.com/ArturT/rubygems-tracker-dist
+    $ git push origin master
