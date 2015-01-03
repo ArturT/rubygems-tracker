@@ -43,3 +43,12 @@ Installing the OpenShift Client Tools
 
     # story copy on github repo https://github.com/ArturT/rubygems-tracker-dist
     $ git push origin master
+
+# Tips
+
+## Debugging
+
+    $ grunt node-inspector
+    $ node --debug-brk server/config/seed.js
+    # go to http://0.0.0.0:8080/debug?port=5858
+
