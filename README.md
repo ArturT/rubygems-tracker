@@ -2,6 +2,10 @@
 
 Track gems download statistics.
 
+# Basic info
+
+[https://blog.openshift.com/yeoman-serves-up-a-real-mean-stack/](https://blog.openshift.com/yeoman-serves-up-a-real-mean-stack/)
+
 # Usage
 
 ## Dependencies
