@@ -1,6 +1,6 @@
 # Rubygems Tracker
 
-Description.
+Track gems download statistics.
 
 # Usage
 
