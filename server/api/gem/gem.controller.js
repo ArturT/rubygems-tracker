@@ -1,6 +1,7 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
  * GET     /gems              ->  index
+ * POST    /gems              ->  create
  * GET     /gems/:id          ->  show
  */
 
@@ -14,6 +15,18 @@ exports.index = function(req, res) {
   Gem.find(function (err, gems) {
     if(err) { return handleError(res, err); }
     return res.json(200, gems);
+  });
+};
+
+// Creates a new gem in the DB.
+exports.create = function(req, res) {
+  var newGem = { name: req.body.name };
+  // TODO
+  // check if gem already exists
+  // check if gem exists on rubygems
+  Gem.create(newGem, function(err, gem) {
+    if(err) { return handleError(res, err); }
+    return res.json(201, gem);
   });
 };
 

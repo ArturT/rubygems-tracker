@@ -1,0 +1,18 @@
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>Gems</h1>
+    <p class="lead">List of gems we are tracking.</p>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header text-center">Choose gem to see its stats</h1>
+
+      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="gem in gems">
+        <li><a href="#" tooltip="{{gem.name}}">{{gem.name}}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

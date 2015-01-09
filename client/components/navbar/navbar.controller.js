@@ -5,6 +5,12 @@ angular.module('rubygemsTrackerApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    }, {
+      'title': 'Gems',
+      'link': '/gems'
+    }, {
+      'title': 'Add gem',
+      'link': '/gems/add'
     }];
 
     $scope.isCollapsed = true;
