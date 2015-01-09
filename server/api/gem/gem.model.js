@@ -17,7 +17,10 @@ var GemSchema = new Schema({
     type: String,
     index: true
   },
-  total_downloads: Number,
+  total_downloads: {
+    type: Number,
+    default: 0
+  },
   gem_statistics: [GemStatisticSchema]
 });
 

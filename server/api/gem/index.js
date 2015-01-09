@@ -6,7 +6,7 @@ var controller = require('./gem.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.get('/:id', controller.show);
+router.get('/:name', controller.show);
 router.post('/', controller.create);
 
 module.exports = router;

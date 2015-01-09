@@ -32,7 +32,7 @@ exports.create = function(req, res) {
 
 // Get a single gem
 exports.show = function(req, res) {
-  Gem.findById(req.params.id, function (err, gem) {
+  Gem.findOne({ name: req.params.name }, 'name total_downloads gem_statistics', function (err, gem) {
     if(err) { return handleError(res, err); }
     if(!gem) { return res.send(404); }
     return res.json(gem);
