@@ -1,27 +1,27 @@
 <header class="hero-unit" id="banner">
   <div class="container">
-    <div ng-hide="submittedForm">
+    <div ng-hide="savedGem">
       <h1>Add your Gem to track it!</h1>
       <p class="lead">Provide your gem name and we will track download statistics for it.</p>
     </div>
 
-    <div ng-show="submittedForm">
+    <div ng-show="savedGem">
       <h1>Thanks!</h1>
       <p class="lead">The {{newGem}} gem was added to our database.</p>
     </div>
   </div>
 </header>
 
-<div class="container" ng-hide="submittedForm">
+<div class="container" ng-hide="savedGem">
   <div class="row">
 
     <div class="col-lg-5 col-lg-offset-4">
       <h1 class="page-header">What's your gem name?</h1>
 
-      <div class="input-group">
+      <div class="input-group" ng-class="{ 'has-error': hasError }">
         <input type="text" class="form-control" placeholder="Gem name" ng-model="newGem">
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button" ng-click="addGem()">Add</button>
+          <button class="btn btn-danger" type="button" ng-click="addGem()" ng-disabled="clickedSubmit">Add</button>
         </span>
       </div><!-- /input-group -->
     </div>

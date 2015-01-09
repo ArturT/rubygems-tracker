@@ -2,13 +2,20 @@
 
 angular.module('rubygemsTrackerApp')
   .controller('GemAddCtrl', function ($scope, $http) {
-    $scope.submittedForm = false;
+    $scope.savedGem = false;
+    $scope.hasError = false;
+    $scope.clickedSubmit = false;
 
     $scope.addGem = function() {
       if($scope.newGem === '') {
         return;
       }
-      $http.post('/api/gems', { name: $scope.newGem });
-      $scope.submittedForm = true;
+      $scope.clickedSubmit = true;
+      $http.post('/api/gems', { name: $scope.newGem }).success(function(data){
+        $scope.savedGem = true;
+      }).error(function(data) {
+        $scope.hasError = true;
+        $scope.clickedSubmit = false;
+      });
     };
   });
