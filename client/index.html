@@ -27,7 +27,19 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <div ng-include="'components/navbar/navbar.html'"></div>
+
     <div ui-view=""></div>
+
+    <footer class="footer">
+      <div class="container">
+        <p>
+        <a href="https://twitter.com/ArturTrzop">@ArturT</a> |
+        <a href="https://github.com/ArturT/rubygems-tracker">RubyGems Tracker Github Repo</a>
+        </p>
+        <p>Based on Angular Fullstack v2.0.13</p>
+      </div>
+    </footer>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
