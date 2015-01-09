@@ -8,6 +8,10 @@ angular.module('rubygemsTrackerApp')
       return $http.get(endpoint);
     };
 
+    this.get = function(gemName) {
+      return $http.get(endpoint + '/' + gemName);
+    };
+
     this.create = function(gemName) {
       return $http.post(endpoint, { name: gemName });
     };
