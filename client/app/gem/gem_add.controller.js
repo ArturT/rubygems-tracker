@@ -13,7 +13,7 @@ angular.module('rubygemsTrackerApp')
         return;
       }
       $scope.clickedSubmit = true;
-      GemService.create({ name: $scope.newGem }).success(function(data){
+      GemService.create($scope.newGem).success(function(data){
         $scope.savedGem = true;
       }).error(function(data) {
         $scope.hasError = true;
