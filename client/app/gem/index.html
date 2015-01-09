@@ -11,7 +11,7 @@
       <h1 class="page-header text-center">Choose gem to see its stats</h1>
 
       <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="gem in gems">
-        <li><a href="#" tooltip="{{gem.name}}">{{gem.name}}</a></li>
+        <li><a ng-href="/gems/{{gem.name}}" tooltip="{{gem.name}}">{{gem.name}}</a></li>
       </ul>
     </div>
   </div>

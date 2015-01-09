@@ -12,5 +12,10 @@ angular.module('rubygemsTrackerApp')
         url: '/gems/add',
         templateUrl: 'app/gem/add.html',
         controller: 'GemAddCtrl'
+      })
+      .state('gemStats', {
+        url: '/gems/:name',
+        templateUrl: 'app/gem/gem_stats.html',
+        controller: 'GemStatsCtrl'
       });
   });
