@@ -7,5 +7,9 @@ angular.module('rubygemsTrackerApp')
     this.all = function() {
       return $http.get(endpoint);
     };
+
+    this.create = function(gem) {
+      return $http.post(endpoint, gem);
+    };
   });
 

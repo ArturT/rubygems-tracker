@@ -1,17 +1,19 @@
 'use strict';
 
 angular.module('rubygemsTrackerApp')
-  .controller('GemAddCtrl', function ($scope, $http) {
+  .controller('GemAddCtrl', function ($scope, $http, GemService) {
+    $scope.newGem = '';
     $scope.savedGem = false;
     $scope.hasError = false;
     $scope.clickedSubmit = false;
 
     $scope.addGem = function() {
       if($scope.newGem === '') {
+        $scope.hasError = true;
         return;
       }
       $scope.clickedSubmit = true;
-      $http.post('/api/gems', { name: $scope.newGem }).success(function(data){
+      GemService.create({ name: $scope.newGem }).success(function(data){
         $scope.savedGem = true;
       }).error(function(data) {
         $scope.hasError = true;
