@@ -16,6 +16,11 @@ angular.module('rubygemsTrackerApp')
       .state('gemStats', {
         url: '/gems/:name',
         templateUrl: 'app/gem/gem_stats.html',
-        controller: 'GemStatsCtrl'
+        controller: 'GemStatsCtrl',
+        resolve: {
+          promiseGem: function(GemService, $stateParams) {
+            return GemService.get($stateParams.name);
+          }
+        }
       });
   });
