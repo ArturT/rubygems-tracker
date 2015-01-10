@@ -8,6 +8,12 @@ angular.module('rubygemsTrackerApp', [
   'ui.bootstrap'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    $stateProvider
+      .state('404', {
+        url: '/404',
+        templateUrl: 'app/errors/404.html'
+      });
+
     $urlRouterProvider
       .otherwise('/');
 
