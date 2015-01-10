@@ -18,4 +18,9 @@ angular.module('rubygemsTrackerApp', [
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
+  })
+  .run(function($rootScope, $state) {
+    $rootScope.$on('$stateChangeError', function() {
+      $state.go('404');
+    });
   });
