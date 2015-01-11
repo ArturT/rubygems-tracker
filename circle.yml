@@ -2,6 +2,7 @@ dependencies:
   override:
     - npm install
     - bower install
+    - gem install sass
 test:
   override:
     - grunt test:server
