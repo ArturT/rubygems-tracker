@@ -1,0 +1,4 @@
+test:
+  post:
+    - grunt test
+    - grunt e2e
