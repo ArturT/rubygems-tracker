@@ -11,7 +11,7 @@ angular.module('rubygemsTrackerApp', [
     $stateProvider
       .state('404', {
         url: '/404',
-        templateUrl: 'app/errors/404.html'
+        templateUrl: 'components/errors/404.html'
       });
 
     $urlRouterProvider
