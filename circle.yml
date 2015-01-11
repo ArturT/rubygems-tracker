@@ -3,6 +3,7 @@ dependencies:
     - npm install
     - bower install
     - gem install compass
+    - node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
 test:
   override:
     - grunt test:server
