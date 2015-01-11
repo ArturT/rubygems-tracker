@@ -19,6 +19,12 @@ Installing the OpenShift Client Tools
     # run mongodb
     $ mongod
 
+    $ gem install compass
+
+In case of error: "Could not find chromedriver" try:
+
+    $ node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
+
 ## Development
 
     $ npm install
@@ -53,12 +59,6 @@ Installing the OpenShift Client Tools
     # go to http://0.0.0.0:8080/debug?port=5858
 
 ## Tests
-
-In case of error: "Could not find chromedriver" try:
-
-    $ node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
-
-Run tests with:
 
     $ grunt test:server
     $ grunt test:client
