@@ -52,3 +52,15 @@ Installing the OpenShift Client Tools
     $ node --debug-brk server/config/seed.js
     # go to http://0.0.0.0:8080/debug?port=5858
 
+## Tests
+
+In case of error: "Could not find chromedriver" try:
+
+    $ node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
+
+Run tests with:
+
+    $ grunt test
+    $ grunt e2e
+
+See config in `Gruntfile.js`.
