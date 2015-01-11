@@ -1,4 +1,8 @@
 test:
+  dependencies:
+    override:
+      - npm install
+      - bower install
   override:
     - grunt test:server
     - grunt test:client
