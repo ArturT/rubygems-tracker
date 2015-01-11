@@ -60,7 +60,8 @@ In case of error: "Could not find chromedriver" try:
 
 Run tests with:
 
-    $ grunt test
-    $ grunt e2e
+    $ grunt test:server
+    $ grunt test:client
+    $ grunt test:e2e
 
 See config in `Gruntfile.js`.

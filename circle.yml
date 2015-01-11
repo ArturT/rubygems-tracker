@@ -1,4 +1,5 @@
 test:
-  post:
-    - grunt test
-    - grunt e2e
+  override:
+    - grunt test:server
+    - grunt test:client
+    - grunt test:e2e
