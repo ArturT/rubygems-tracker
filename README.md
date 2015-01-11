@@ -1,5 +1,7 @@
 # Rubygems Tracker
 
+[![Circle CI](https://circleci.com/gh/ArturT/rubygems-tracker.svg?style=svg)](https://circleci.com/gh/ArturT/rubygems-tracker)
+
 Track gems download statistics.
 
 # Basic info
