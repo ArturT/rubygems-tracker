@@ -15,7 +15,9 @@ var GemStatisticSchema = new Schema({
 var GemSchema = new Schema({
   name: {
     type: String,
-    index: true
+    index: {
+      unique: true
+    }
   },
   total_downloads: {
     type: Number,
