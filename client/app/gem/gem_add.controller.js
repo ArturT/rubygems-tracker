@@ -13,9 +13,9 @@ angular.module('rubygemsTrackerApp.controllers')
         return;
       }
       $scope.clickedSubmit = true;
-      GemService.create($scope.gemName).success(function(data){
+      GemService.create($scope.gemName).then(function(data){
         $scope.savedGem = true;
-      }).error(function(data) {
+      }, function(data) {
         $scope.hasError = true;
         $scope.clickedSubmit = false;
       });
