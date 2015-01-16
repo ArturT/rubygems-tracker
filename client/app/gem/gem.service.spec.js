@@ -23,4 +23,18 @@ describe('Service: GemService', function () {
       expect(angular.equals(result, gems)).toBe(true);
     });
   });
+
+  describe('#get', function () {
+    var gem = { name: 'knapsack' };
+    var result;
+
+    it('returns gem', function () {
+      $httpBackend.expectGET('/api/gems/' + gem.name).respond(gem);
+      GemService.get(gem.name).success(function(data) {
+        result = data;
+      });
+      $httpBackend.flush();
+      expect(angular.equals(result, gem)).toBe(true);
+    });
+  });
 });
