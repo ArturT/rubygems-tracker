@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rubygemsTrackerApp')
+angular.module('rubygemsTrackerApp.services')
   .service('GemService', function ($http) {
     var endpoint = '/api/gems';
 

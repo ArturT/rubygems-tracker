@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Service: GemService', function () {
-  beforeEach(module('rubygemsTrackerApp'));
+  beforeEach(module('rubygemsTrackerApp.services'));
 
   var GemService, $httpBackend;
 
@@ -13,10 +13,13 @@ describe('Service: GemService', function () {
 
   describe('#all', function () {
     var gems = ['knapsack', 'rails'];
+    var result;
 
     it('returns all gems', function () {
       $httpBackend.expectGET('/api/gems').respond(gems);
-      var result = GemService.all();
+      GemService.all().success(function(data) {
+        result = data;
+      });
       $httpBackend.flush();
       expect(result.length).toBe(gems.length);
     });
