@@ -20,13 +20,23 @@ exports.index = function(req, res) {
 
 // Creates a new gem in the DB.
 exports.create = function(req, res) {
-  var gemName = { name: req.body.name };
-  // TODO
-  // check if gem already exists
-  // check if gem exists on rubygems
-  Gem.create(gemName, function(err, gem) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, gem);
+  var newGem = { name: req.body.name };
+
+  // check if gem already exists in DB
+  Gem.find(newGem, function(err, gems) {
+    if (err) { return handleError(res, err); }
+
+    if (gems.length > 0) {
+      var errMsg = { err: ('Gem ' + newGem.name + ' already exists in our database.') };
+      return res.json(422, errMsg);
+    }
+
+    // TODO check if gem exists on rubygems
+
+    Gem.create(newGem, function(err, gem) {
+      if(err) { return handleError(res, err); }
+      return res.json(201, gem);
+    });
   });
 };
 
