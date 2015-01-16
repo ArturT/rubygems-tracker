@@ -6,7 +6,6 @@ describe('Service: GemService', function () {
   var GemService, $httpBackend;
 
   beforeEach(inject(function (_$httpBackend_, $injector) {
-    //var $injector = module('rubygemsTrackerApp');
     GemService = $injector.get('GemService');
     $httpBackend = _$httpBackend_;
   }));
@@ -21,7 +20,7 @@ describe('Service: GemService', function () {
         result = data;
       });
       $httpBackend.flush();
-      expect(result.length).toBe(gems.length);
+      expect(angular.equals(result, gems)).toBe(true);
     });
   });
 });
