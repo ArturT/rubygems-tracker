@@ -25,6 +25,8 @@
           <button class="btn btn-danger" type="button" ng-click="addGem()" ng-disabled="clickedSubmit">Add</button>
         </span>
       </div><!-- /input-group -->
+
+      <div class="alert alert-danger margin-top" role="alert" ng-show="error">{{ error }}</div>
     </div>
 
   </div>

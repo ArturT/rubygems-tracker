@@ -8,16 +8,21 @@ angular.module('rubygemsTrackerApp.controllers')
     $scope.clickedSubmit = false;
 
     $scope.addGem = function() {
+      $scope.error = undefined;
+
       if($scope.gemName === '') {
         $scope.hasError = true;
         return;
       }
+
       $scope.clickedSubmit = true;
-      GemService.create($scope.gemName).then(function(data){
+
+      GemService.create($scope.gemName).then(function(response){
         $scope.savedGem = true;
-      }, function(data) {
+      }, function(response) {
         $scope.hasError = true;
         $scope.clickedSubmit = false;
+        $scope.error = response.data.err;
       });
     };
   });

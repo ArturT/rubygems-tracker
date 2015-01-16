@@ -45,6 +45,7 @@ describe('Controller: GemAddCtrl', function () {
         expect(scope.savedGem).toBe(true);
         expect(scope.hasError).toBe(false);
         expect(scope.clickedSubmit).toBe(true);
+        expect(scope.error).toBeUndefined();
       });
     });
 
@@ -59,14 +60,18 @@ describe('Controller: GemAddCtrl', function () {
           expect(scope.savedGem).toBe(false);
           expect(scope.hasError).toBe(true);
           expect(scope.clickedSubmit).toBe(false);
+          expect(scope.error).toBeUndefined();
         });
       });
 
       describe('when gem has name and create was rejected', function () {
+        var errMsg = 'Error message';
+        var response = { data: { err: errMsg } };
+
         beforeEach(function () {
           spyOn(GemService, 'create').andCallFake(function () {
             var deferred = $q.defer();
-            deferred.reject({});
+            deferred.reject(response);
             return deferred.promise;
           });
           scope.gemName = 'knapsack';
@@ -79,6 +84,7 @@ describe('Controller: GemAddCtrl', function () {
           expect(scope.savedGem).toBe(false);
           expect(scope.hasError).toBe(true);
           expect(scope.clickedSubmit).toBe(false);
+          expect(scope.error).toEqual(errMsg);
         });
       });
     });
