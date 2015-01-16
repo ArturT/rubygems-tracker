@@ -25,7 +25,7 @@ describe('Controller: GemCtrl', function () {
       $scope: scope,
       GemService: GemService
     });
-    scope.$apply();
+    scope.$digest();
   }));
 
   it('should attach a list of gems to the scope', function () {
