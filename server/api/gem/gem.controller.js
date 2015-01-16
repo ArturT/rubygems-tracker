@@ -20,11 +20,11 @@ exports.index = function(req, res) {
 
 // Creates a new gem in the DB.
 exports.create = function(req, res) {
-  var newGem = { name: req.body.name };
+  var gemName = { name: req.body.name };
   // TODO
   // check if gem already exists
   // check if gem exists on rubygems
-  Gem.create(newGem, function(err, gem) {
+  Gem.create(gemName, function(err, gem) {
     if(err) { return handleError(res, err); }
     return res.json(201, gem);
   });
