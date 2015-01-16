@@ -7,8 +7,8 @@
 
     <div ng-show="savedGem">
       <h1>Thanks!</h1>
-      <p class="lead">The {{newGem}} gem was added to our database.</p>
-      <p><a ng-href="/gems/{{newGem}}" class="btn btn-lg btn-danger">See stats for {{newGem}}</a></p>
+      <p class="lead">The {{gemName}} gem was added to our database.</p>
+      <p><a ng-href="/gems/{{gemName}}" class="btn btn-lg btn-danger">See stats for {{gemName}}</a></p>
     </div>
   </div>
 </header>
@@ -20,7 +20,7 @@
       <h1 class="page-header">What's your gem name?</h1>
 
       <div class="input-group" ng-class="{ 'has-error': hasError }">
-        <input type="text" class="form-control" placeholder="Gem name" ng-model="newGem">
+        <input type="text" class="form-control" placeholder="Gem name" ng-model="gemName">
         <span class="input-group-btn">
           <button class="btn btn-danger" type="button" ng-click="addGem()" ng-disabled="clickedSubmit">Add</button>
         </span>
