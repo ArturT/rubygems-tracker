@@ -37,4 +37,18 @@ describe('Service: GemService', function () {
       expect(angular.equals(result, gem)).toBe(true);
     });
   });
+
+  describe('#create', function () {
+    var gem = { name: 'knapsack' };
+    var result;
+
+    it('creates gem', function () {
+      $httpBackend.expectPOST('/api/gems').respond(gem);
+      GemService.create(gem.name).success(function(data) {
+        result = data;
+      });
+      $httpBackend.flush();
+      expect(angular.equals(result, gem)).toBe(true);
+    });
+  });
 });
