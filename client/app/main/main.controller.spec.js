@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('rubygemsTrackerApp'));
+  beforeEach(module('rubygemsTrackerApp.controllers'));
 
   var MainCtrl,
       scope,

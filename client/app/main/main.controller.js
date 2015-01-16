@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rubygemsTrackerApp')
+angular.module('rubygemsTrackerApp.controllers')
   .controller('MainCtrl', function ($scope, $http, GemService) {
     $scope.gems = [];
 

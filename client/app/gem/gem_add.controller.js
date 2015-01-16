@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rubygemsTrackerApp')
+angular.module('rubygemsTrackerApp.controllers')
   .controller('GemAddCtrl', function ($scope, $http, GemService) {
     $scope.newGem = '';
     $scope.savedGem = false;

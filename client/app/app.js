@@ -1,6 +1,9 @@
 'use strict';
 
 angular.module('rubygemsTrackerApp.services', []);
+angular.module('rubygemsTrackerApp.controllers', [
+  'rubygemsTrackerApp.services'
+]);
 
 angular.module('rubygemsTrackerApp', [
   'ngCookies',
@@ -8,7 +11,7 @@ angular.module('rubygemsTrackerApp', [
   'ngSanitize',
   'ui.router',
   'ui.bootstrap',
-  'rubygemsTrackerApp.services'
+  'rubygemsTrackerApp.controllers'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
     $stateProvider
