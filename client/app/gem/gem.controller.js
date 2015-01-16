@@ -4,7 +4,7 @@ angular.module('rubygemsTrackerApp.controllers')
   .controller('GemCtrl', function ($scope, $http, GemService) {
     $scope.gems = [];
 
-    GemService.all().success(function(gems) {
-      $scope.gems = gems;
+    GemService.all().then(function(response) {
+      $scope.gems = response.data;
     });
   });
