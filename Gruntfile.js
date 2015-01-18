@@ -621,6 +621,7 @@ module.exports = function (grunt) {
 
     else if (target === 'e2e') {
       return grunt.task.run([
+        'drop_db',
         'clean:server',
         'env:all',
         'env:test',
