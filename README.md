@@ -66,4 +66,8 @@ In case of error: "Could not find chromedriver" try:
     $ grunt test:client
     $ grunt test:e2e
 
+Run e2e tests with different port if you are running `grunt serve` at the same time.
+
+    $ PORT=9001 grunt test:e2e
+
 See config in `Gruntfile.js`.
