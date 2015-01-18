@@ -569,7 +569,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass',
+        'injector:sass', 
         'concurrent:server',
         'injector',
         'wiredep',
@@ -581,7 +581,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'env:all',
-      'injector:sass',
+      'injector:sass', 
       'concurrent:server',
       'injector',
       'wiredep',
@@ -611,7 +611,7 @@ module.exports = function (grunt) {
       return grunt.task.run([
         'clean:server',
         'env:all',
-        'injector:sass',
+        'injector:sass', 
         'concurrent:test',
         'injector',
         'autoprefixer',
@@ -624,7 +624,7 @@ module.exports = function (grunt) {
         'clean:server',
         'env:all',
         'env:test',
-        'injector:sass',
+        'injector:sass', 
         'concurrent:test',
         'injector',
         'wiredep',
@@ -642,7 +642,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
-    'injector:sass',
+    'injector:sass', 
     'concurrent:dist',
     'injector',
     'wiredep',
@@ -664,38 +664,4 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
-
-  grunt.registerTask('clean_mongodb', function () {
-    process.env.NODE_ENV = process.env.NODE_ENV || 'test';
-    grunt.log.warn('Use NODE_ENV=' + process.env.NODE_ENV);
-
-    var mongoose = require('mongoose');
-    var config = require('./server/config/environment');
-    var DatabaseCleaner = require('database-cleaner');
-    var databaseCleaner = new DatabaseCleaner('mongodb');
-
-    mongoose.connect(config.mongo.uri, config.mongo.options);
-    grunt.log.warn(config.mongo.uri);
-    grunt.log.warn(config.mongo.options);
-
-    var done = this.async();
-    databaseCleaner.clean(mongoose.connection.db, function() {
-      grunt.log.warn('Cleaned mongodb database successfully');
-      done();
-    });
-
-    // var done = this.async();
-    // setTimeout(function() {
-    //   grunt.log.warn('done !');
-    //   done();
-    // }, 2000);
-    // var util = require('util')
-    // grunt.log.warn(util.inspect(mongoose.connection))
-    // for (i in mongoose.connection.collections) {
-    //   grunt.log.warn(i);
-
-    // }
-    // grunt.log.warn('done!')
-    // grunt.log.warn(mongoose.connection.db.dropDatabase())
-  });
 };
