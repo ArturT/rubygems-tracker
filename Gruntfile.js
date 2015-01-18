@@ -664,4 +664,31 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  grunt.registerTask('drop_db', 'drop the database', function() {
+    // Set default node environment to development
+    process.env.NODE_ENV = process.env.NODE_ENV || 'test';
+
+    grunt.log.warn('NODE_ENV=' + process.env.NODE_ENV);
+
+    var mongoose = require('mongoose');
+    var config = require('./server/config/environment');
+
+    // Connect to database
+    mongoose.connect(config.mongo.uri, config.mongo.options);
+
+    // async mode
+    var done = this.async();
+
+    mongoose.connection.on('open', function () {
+      mongoose.connection.db.dropDatabase(function(err) {
+        if(err) {
+          grunt.log.warn(err);
+        } else {
+          grunt.log.warn('Successfully dropped db');
+        }
+        mongoose.connection.close(done);
+      });
+    });
+  });
 };
