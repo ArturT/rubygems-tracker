@@ -4,25 +4,23 @@ angular.module('rubygemsTrackerApp.controllers')
   .controller('GemAddCtrl', function ($scope, $http, GemService) {
     $scope.gemName = '';
     $scope.savedGem = false;
-    $scope.hasError = false;
     $scope.clickedSubmit = false;
+    $scope.errors = [];
 
     $scope.addGem = function() {
-      $scope.error = undefined;
-
-      if($scope.gemName === '') {
-        $scope.hasError = true;
-        return;
-      }
-
       $scope.clickedSubmit = true;
 
-      GemService.create($scope.gemName).then(function(response){
+      GemService.create($scope.gemName).then(function(response) {
         $scope.savedGem = true;
       }, function(response) {
-        $scope.hasError = true;
         $scope.clickedSubmit = false;
-        $scope.error = response.data.err;
+
+        var errors = [];
+        var resErrors = response.data.errors;
+        for (var key in resErrors) {
+          errors.push(resErrors[key].message);
+        }
+        $scope.errors = errors;
       });
     };
   });

@@ -23,8 +23,8 @@ describe('Controller: GemAddCtrl', function () {
   it('has default values on scope', function () {
     expect(scope.gemName).toEqual('');
     expect(scope.savedGem).toBe(false);
-    expect(scope.hasError).toBe(false);
     expect(scope.clickedSubmit).toBe(false);
+    expect(scope.errors.length).toBe(0);
   });
 
   describe('add new gem', function () {
@@ -43,49 +43,32 @@ describe('Controller: GemAddCtrl', function () {
       it('saved gem', function () {
         expect(scope.gemName).toEqual('knapsack');
         expect(scope.savedGem).toBe(true);
-        expect(scope.hasError).toBe(false);
         expect(scope.clickedSubmit).toBe(true);
-        expect(scope.error).toBeUndefined();
+        expect(scope.errors.length).toBe(0);
       });
     });
 
     describe('when failure', function () {
-      describe('when gem name is empty', function () {
-        beforeEach(function () {
-          scope.addGem();
-        });
+      var errMsg = 'Error message';
+      var response = { data: { errors: { name: { message: errMsg } } } };
 
-        it('has error', function () {
-          expect(scope.gemName).toEqual('');
-          expect(scope.savedGem).toBe(false);
-          expect(scope.hasError).toBe(true);
-          expect(scope.clickedSubmit).toBe(false);
-          expect(scope.error).toBeUndefined();
+      beforeEach(function () {
+        spyOn(GemService, 'create').andCallFake(function () {
+          var deferred = $q.defer();
+          deferred.reject(response);
+          return deferred.promise;
         });
+        scope.gemName = 'knapsack';
+        scope.addGem();
+        scope.$digest();
       });
 
-      describe('when gem has name and create was rejected', function () {
-        var errMsg = 'Error message';
-        var response = { data: { err: errMsg } };
-
-        beforeEach(function () {
-          spyOn(GemService, 'create').andCallFake(function () {
-            var deferred = $q.defer();
-            deferred.reject(response);
-            return deferred.promise;
-          });
-          scope.gemName = 'knapsack';
-          scope.addGem();
-          scope.$digest();
-        });
-
-        it('not save gem', function () {
-          expect(scope.gemName).toEqual('knapsack');
-          expect(scope.savedGem).toBe(false);
-          expect(scope.hasError).toBe(true);
-          expect(scope.clickedSubmit).toBe(false);
-          expect(scope.error).toEqual(errMsg);
-        });
+      it('not save gem', function () {
+        expect(scope.gemName).toEqual('knapsack');
+        expect(scope.savedGem).toBe(false);
+        expect(scope.clickedSubmit).toBe(false);
+        expect(scope.errors.length).toBe(1);
+        expect(scope.errors[0]).toEqual(errMsg);
       });
     });
   });

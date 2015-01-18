@@ -19,14 +19,14 @@
     <div class="col-lg-5 col-lg-offset-4">
       <h1 class="page-header">What's your gem name?</h1>
 
-      <div class="input-group" ng-class="{ 'has-error': hasError }">
+      <div class="input-group" ng-class="{ 'has-error': errors.length }">
         <input type="text" class="form-control" placeholder="Gem name" ng-model="gemName">
         <span class="input-group-btn">
           <button class="btn btn-danger" type="button" ng-click="addGem()" ng-disabled="clickedSubmit">Add</button>
         </span>
       </div><!-- /input-group -->
 
-      <div class="alert alert-danger margin-top" role="alert" ng-show="error">{{ error }}</div>
+      <div class="alert alert-danger margin-top" role="alert" ng-repeat="error in errors">{{ error }}</div>
     </div>
 
   </div>
