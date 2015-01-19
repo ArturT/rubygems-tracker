@@ -5,11 +5,11 @@ var uniqueValidator = require('mongoose-unique-validator');
 var Schema = mongoose.Schema;
 
 var GemStatisticSchema = new Schema({
-  total_downloads: {
+  totalDownloads: {
     type: Number,
     required: true
   },
-  recent_downloads: {
+  recentDownloads: {
     type: Number,
     required: true
   },
@@ -31,12 +31,12 @@ var GemSchema = new Schema({
       unique: true
     }
   },
-  total_downloads: {
+  totalDownloads: {
     type: Number,
     required: true,
     default: 0
   },
-  gem_statistics: [GemStatisticSchema]
+  gemStatistics: [GemStatisticSchema]
 });
 GemSchema.plugin(uniqueValidator);
 
