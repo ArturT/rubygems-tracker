@@ -13,9 +13,8 @@ describe('Add Gem View', function() {
   });
 
   describe('when add gem with success', function () {
-    iit('add knapsack gem', function () {
-      page.gemNameField.sendKeys('knapsack');
-      page.submitButton.click();
+    it('add knapsack gem', function () {
+      page.addGem('knapsack');
       expect(page.successMessage.getText()).toBe('Thanks!');
     });
   });
