@@ -16,10 +16,7 @@ describe('Add Gem View', function() {
     iit('add knapsack gem', function () {
       page.gemNameField.sendKeys('knapsack');
       page.submitButton.click();
-      browser.sleep(3000);
-      //browser.waitForAngular();
-      //expect(page.h1El.getText()).toBe('Thanks!');
-      expect(element(by.css('.hero-unit h1')).getText()).toBe('Thanks!');
+      expect(page.successMessage.getText()).toBe('Thanks!');
     });
   });
 

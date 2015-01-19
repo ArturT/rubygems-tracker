@@ -5,6 +5,7 @@ var AddGemPage = function() {
   this.h1El = this.heroEl.element(by.css('h1'));
   this.gemNameField = element(by.id('gemName'));
   this.submitButton = element(by.id('submitButton'));
+  this.successMessage = element(by.id('successMessage'));
 };
 
 module.exports = new AddGemPage();
