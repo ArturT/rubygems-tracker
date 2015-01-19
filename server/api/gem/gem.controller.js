@@ -50,7 +50,7 @@ exports.create = function(req, res) {
     try {
       var gemData = JSON.parse(rubygemsResData);
 
-      // TODO add extra details to newGem
+      newGem.totalDownloads = gemData.downloads;
 
       Gem.create(newGem, function(err, gem) {
         if(err) { return handleError(res, err); }
