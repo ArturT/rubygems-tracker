@@ -12,20 +12,22 @@ describe('Add Gem View', function() {
     expect(page.h1El.getText()).toBe('Add your Gem to track it!');
   });
 
-  describe('when add gem with success', function () {
-    it('add knapsack gem', function () {
+  describe('when success', function () {
+    it('adds knapsack gem', function () {
       page.addGem('knapsack');
       expect(page.successMessage.getText()).toBe('Thanks!');
     });
   });
 
-  describe('when form has error', function () {
-    it('gem name already exists in our database', function () {
-      var gemName = 'rails';
-      page.addGem(gemName);
-      browser.get('/gems/add');
-      page.addGem(gemName);
-      expect(page.alertDanger.getText()).toBe('Error, expected `name` to be unique. Value: `'+gemName+'`');
+  describe('when failure', function () {
+    describe('when gem name already exists in our database', function () {
+      it('has unique name error', function () {
+        var gemName = 'rails';
+        page.addGem(gemName);
+        browser.get('/gems/add');
+        page.addGem(gemName);
+        expect(page.alertDanger.getText()).toBe('Error, expected `name` to be unique. Value: `'+gemName+'`');
+      });
     });
   });
 });
