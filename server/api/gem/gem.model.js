@@ -16,7 +16,6 @@ var GemStatisticSchema = new Schema({
   date: {
     type: Date,
     required: true,
-    unique: true,
     default: Date.now
   }
 });
