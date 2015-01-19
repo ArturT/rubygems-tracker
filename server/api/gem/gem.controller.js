@@ -8,6 +8,7 @@
 'use strict';
 
 var _ = require('lodash');
+var https = require('https');
 var Gem = require('./gem.model');
 
 // Get list of gems
@@ -22,44 +23,56 @@ exports.index = function(req, res) {
 exports.create = function(req, res) {
   var newGem = { name: req.body.name };
 
-  if (newGem.name.length == 0) {
-    return res.json(400, {
-      errors: { name: { message: 'The gem name is missing.' } }
-    });
+  handleEmptyGemNameError(newGem.name);
+
+  var rubygemsResData = '';
+  var rubygemsUrl = "https://rubygems.org/api/v1/gems/"+newGem.name+".json";
+
+  https.get(rubygemsUrl, handleGetResponse)
+  .on('error', handleRubyGemsResponseError)
+  .end();
+
+  function handleEmptyGemNameError(gemName) {
+    if (gemName.length == 0) {
+      return res.json(400, {
+        errors: { name: { message: 'The gem name is missing.' } }
+      });
+    }
   }
 
-  var rubygemsUrl = "https://rubygems.org/api/v1/gems/"+newGem.name+".json";
-  var https = require('https');
-  https.get(rubygemsUrl, function(rubygemsRes) {
-    var data = '';
+  function handleGetResponse(rubygemsRes) {
     rubygemsRes.on('data', function(chunk) {
-      data += chunk;
-    }).on('end', function() {
-      try {
-        var gemData = JSON.parse(data);
+      rubygemsResData += chunk;
+    }).on('end', handleRubyGemsResponseSuccess);
+  }
 
-        Gem.create(newGem, function(err, gem) {
-          if(err) { return handleError(res, err); }
-          return res.json(201, gem);
-        });
-      } catch (e) {
-        var resMsg;
-        if (data == 'This rubygem could not be found.') {
-            resMsg = data;
-        } else {
-          resMsg = 'Unexpected error from rubygems.org, please try later or use proper gem name.';
-        }
-        return res.json(400, {
-          errors: { name: { message: resMsg } }
-        });
+  function handleRubyGemsResponseSuccess() {
+    try {
+      var gemData = JSON.parse(rubygemsResData);
+
+      Gem.create(newGem, function(err, gem) {
+        if(err) { return handleError(res, err); }
+        return res.json(201, gem);
+      });
+    } catch (e) {
+      var resMsg;
+      if (rubygemsResData == 'This rubygem could not be found.') {
+          resMsg = rubygemsResData;
+      } else {
+        resMsg = 'Unexpected error from rubygems.org, please try later or use proper gem name.';
       }
-    });
-  }).on('error', function(e) {
+      return res.json(400, {
+        errors: { name: { message: resMsg } }
+      });
+    }
+  }
+
+  function handleRubyGemsResponseError(e) {
     console.log("Got error: " + e.message);
     return res.json(500, {
       errors: { name: { message: 'Server error, try again later.' } }
     });
-  }).end();
+  }
 };
 
 // Get a single gem
