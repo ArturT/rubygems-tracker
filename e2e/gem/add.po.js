@@ -9,6 +9,7 @@ var AddGemPage = function() {
   this.submitButton = element(by.id('submitButton'));
   this.successMessage = element(by.id('successMessage'));
   this.alertDanger = element(by.css('.alert-danger'));
+  this.gemLink = element(by.id('gemLink'));
 
   this.addGem = function(gemName) {
     _this.gemNameField.sendKeys(gemName);
