@@ -23,7 +23,9 @@
         <div class="input-group" ng-class="{ 'has-error': errors.length }">
           <input type="text" class="form-control" placeholder="Gem name" ng-model="gemName" id="gemName">
           <span class="input-group-btn">
-            <button class="btn btn-danger" type="submit" id="submitButton">Add</button>
+            <button class="btn btn-danger" type="submit" id="submitButton">
+              <i class="fa fa-plus" ng-class="{ 'fa-circle-o-notch fa-spin': clickedSubmit }"></i> Add
+            </button>
           </span>
         </div><!-- /input-group -->
       </form>
