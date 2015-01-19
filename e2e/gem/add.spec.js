@@ -20,5 +20,12 @@ describe('Add Gem View', function() {
   });
 
   describe('when form has error', function () {
+    it('gem name already exists in our database', function () {
+      var gemName = 'rails';
+      page.addGem(gemName);
+      browser.get('/gems/add');
+      page.addGem(gemName);
+      expect(page.alertDanger.getText()).toBe('Error, expected `name` to be unique. Value: `'+gemName+'`');
+    });
   });
 });
