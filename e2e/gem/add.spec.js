@@ -22,11 +22,10 @@ describe('Add Gem View', function() {
   describe('when failure', function () {
     describe('when gem name already exists in our database', function () {
       it('has unique name error', function () {
-        var gemName = 'rails';
-        page.addGem(gemName);
+        page.addGem('rails');
         browser.get('/gems/add');
-        page.addGem(gemName);
-        expect(page.alertDanger.getText()).toBe('Error, expected `name` to be unique. Value: `'+gemName+'`');
+        page.addGem('rails');
+        expect(page.alertDanger.getText()).toBe('Error, expected `name` to be unique. Value: `rails`');
       });
     });
   });
