@@ -44,7 +44,7 @@ for (var index in gemNames) {
     } else if (gems.length == 0) {
       Gem.create({ name: gemName });
     } else {
-      console.log('Gem ' + gemName + ' already exists.');
+      console.log('Seed:', 'Gem ' + gemName + ' already exists.');
     }
   });
 }
