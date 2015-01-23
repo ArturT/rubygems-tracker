@@ -10,6 +10,7 @@
 var _ = require('lodash');
 var https = require('https');
 var Gem = require('./gem.model');
+var RubyGemsService = require('../../services/rubygems.service');
 
 // Get list of gems
 exports.index = function(req, res) {
@@ -23,58 +24,43 @@ exports.index = function(req, res) {
 exports.create = function(req, res) {
   var newGem = { name: req.body.name };
 
-  handleEmptyGemNameError(newGem.name);
-
-  var rubygemsResData = '';
-  var rubygemsUrl = "https://rubygems.org/api/v1/gems/"+newGem.name+".json";
-
-  https.get(rubygemsUrl, handleGetResponse)
-  .on('error', handleRubyGemsResponseError)
-  .end();
-
-  function handleEmptyGemNameError(gemName) {
-    if (gemName.length == 0) {
-      return res.json(400, {
-        errors: { name: { message: 'The gem name is missing.' } }
-      });
-    }
+  if (newGem.name.length == 0) {
+    return res.json(400, {
+      errors: { name: { message: 'The gem name is missing.' } }
+    });
   }
 
-  function handleGetResponse(rubygemsRes) {
-    rubygemsRes.on('data', function(chunk) {
-      rubygemsResData += chunk;
-    }).on('end', handleRubyGemsResponseSuccess);
-  }
+  RubyGemsService.getGem({
+    gemName: newGem.name,
 
-  function handleRubyGemsResponseSuccess() {
-    try {
-      var gemData = JSON.parse(rubygemsResData);
-
+    onSuccess: function (gemData) {
       newGem.totalDownloads = gemData.downloads;
 
       Gem.create(newGem, function(err, gem) {
         if(err) { return handleError(res, err); }
         return res.json(201, gem);
       });
-    } catch (e) {
-      var resMsg;
-      if (rubygemsResData == 'This rubygem could not be found.') {
-          resMsg = rubygemsResData;
-      } else {
-        resMsg = 'Unexpected error from rubygems.org, please try later or use proper gem name.';
-      }
+    },
+
+    onGemNotFound: function(message) {
       return res.json(400, {
-        errors: { name: { message: resMsg } }
+        errors: { name: { message: message } }
+      });
+    },
+
+    onInvalidJSON: function(message) {
+      return res.json(400, {
+        errors: { name: { message: 'Unexpected error from rubygems.org, please try later or use proper gem name.' } }
+      });
+    },
+
+    onError: function (e) {
+      console.log("Got error: " + e.message);
+      return res.json(500, {
+        errors: { name: { message: 'Server error, try again later.' } }
       });
     }
-  }
-
-  function handleRubyGemsResponseError(e) {
-    console.log("Got error: " + e.message);
-    return res.json(500, {
-      errors: { name: { message: 'Server error, try again later.' } }
-    });
-  }
+  });
 };
 
 // Get a single gem
