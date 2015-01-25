@@ -42,7 +42,7 @@ for (var index in gemNames) {
     if (err) {
       return err;
     } else if (gems.length == 0) {
-      Gem.create({ name: gemName });
+      Gem.create({ name: gemName, totalDownloads: 0 });
     } else {
       console.log('Seed:', 'Gem ' + gemName + ' already exists.');
     }

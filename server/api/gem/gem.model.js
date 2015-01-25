@@ -33,8 +33,7 @@ var GemSchema = new Schema({
   },
   totalDownloads: {
     type: Number,
-    required: true,
-    default: 0
+    required: true
   },
   gemStatistics: [GemStatisticSchema]
 });
