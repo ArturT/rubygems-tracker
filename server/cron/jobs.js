@@ -10,6 +10,12 @@ var updateGemStats = function(gem) {
     gemName: gem.name,
     onSuccess: function (data) {
       console.log(data.version);
+      gem.totalDownloads = data.downloads;
+      gem.save(function(err) {
+        if (err) {
+          console.error("Couldn't update gem " + gem.name);
+        }
+      });
     }
   });
 };
