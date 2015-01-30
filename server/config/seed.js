@@ -5,9 +5,10 @@
 
 'use strict';
 
-var Thing = require('../api/thing/thing.model');
 var Gem = require('../api/gem/gem.model');
 
+/*
+var Thing = require('../api/thing/thing.model');
 Thing.find({}).remove(function() {
   Thing.create({
     name : 'Development Tools',
@@ -29,7 +30,7 @@ Thing.find({}).remove(function() {
     info : 'Easily deploy your app to Heroku or Openshift with the heroku and openshift subgenerators'
   });
 });
-
+*/
 
 // Create gems if missing
 // Provide list of gems we would like to track
