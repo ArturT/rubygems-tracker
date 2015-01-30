@@ -37,7 +37,11 @@ function defaultOnResponse(response, onSuccess, onGemNotFound, onInvalidJSON) {
   }).on('end', function() {
     try {
       var jsonData = JSON.parse(responseData);
-      onSuccess(jsonData);
+      try {
+        onSuccess(jsonData);
+      } catch (e) {
+        console.log('onSuccess callback has error', e);
+      }
     } catch (e) {
       if (responseData == errorMessages.gemNotFound) {
         onGemNotFound(errorMessages.gemNotFound);
