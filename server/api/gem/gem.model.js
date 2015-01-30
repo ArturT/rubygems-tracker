@@ -3,23 +3,7 @@
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 var Schema = mongoose.Schema;
-
-var GemStatisticSchema = new Schema({
-  totalDownloads: {
-    type: Number,
-    required: true
-  },
-  recentDownloads: {
-    type: Number,
-    required: true
-  },
-  date: {
-    type: Date,
-    required: true,
-    default: Date.now
-  }
-});
-GemStatisticSchema.plugin(uniqueValidator);
+var GemStatisticSchema = require('./gem_statistic.schema');
 
 var GemSchema = new Schema({
   name: {
