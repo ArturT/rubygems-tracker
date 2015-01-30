@@ -46,6 +46,7 @@ var updateGemStats = function(gem) {
 };
 
 var updateStatsForAllGems = function() {
+  console.log('CronJob: updateStatsForAllGems');
   Gem.find({}, function (err, gems) {
     if (err) { return err; }
     _(gems).forEach(updateGemStats);
@@ -53,14 +54,11 @@ var updateStatsForAllGems = function() {
 };
 
 // call it once just for test
-updateStatsForAllGems();
+//updateStatsForAllGems();
 
 var gemsStatisticsJob = new CronJob({
-  cronTime: '* * * * * *',
+  cronTime: '0 0 * * * *',
   onTick: updateStatsForAllGems
-  //onTick: function() {
-    //console.log('just tick');
-  //}
 });
 
 module.exports = {

@@ -11,7 +11,7 @@ var express = require('express');
 var mongoose = require('mongoose');
 var config = require('./config/environment');
 var cronJobs = require('./cron/jobs');
-//cronJobs.start();
+cronJobs.start();
 
 // Connect to database
 mongoose.connect(config.mongo.uri, config.mongo.options);
