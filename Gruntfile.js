@@ -667,7 +667,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('drop_db', 'drop the database', function() {
-    // Set default node environment to development
+    // Set default node environment to test
     process.env.NODE_ENV = process.env.NODE_ENV || 'test';
 
     grunt.log.warn('NODE_ENV=' + process.env.NODE_ENV);
