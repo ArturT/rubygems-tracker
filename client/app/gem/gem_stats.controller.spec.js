@@ -6,7 +6,7 @@ describe('Controller: GemStatsCtrl', function () {
 
   var GemStatsCtrl,
       scope;
-  var gem = { name: 'knapsack' };
+  var gem = { name: 'knapsack', gemStatistics: [] };
   var promiseGem = { data: gem };
 
   beforeEach(inject(function ($controller, $rootScope) {

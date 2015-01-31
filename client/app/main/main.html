@@ -1,7 +1,7 @@
 <header class="hero-unit" id="banner">
   <div class="container">
     <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Choose gem to see download statistis.</p>
+    <p class="lead">Add your gem to track daily downloads and see trends.</p>
     <a ng-href="/gems"><img src="assets/images/ruby-gem.png"></a>
   </div>
 </header>
@@ -9,7 +9,7 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Gems:</h1>
+      <h1 class="page-header">See example statistics for:</h1>
       <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="gem in gems">
         <li><a ng-href="/gems/{{gem.name}}" tooltip="{{gem.name}}">{{gem.name}}</a></li>
       </ul>

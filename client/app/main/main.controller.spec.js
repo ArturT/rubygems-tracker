@@ -13,7 +13,11 @@ describe('Controller: MainCtrl', function () {
   beforeEach(inject(function (_$httpBackend_, $controller, $rootScope) {
     $httpBackend = _$httpBackend_;
     $httpBackend.expectGET('/api/gems')
-      .respond(['knapsack', 'rails']);
+      .respond([{
+        name: 'knapsack'
+      }, {
+        name: 'rails'
+      }]);
 
     scope = $rootScope.$new();
     MainCtrl = $controller('MainCtrl', {
@@ -21,8 +25,8 @@ describe('Controller: MainCtrl', function () {
     });
   }));
 
-  it('should attach a list of gems to the scope', function () {
+  it('should attach a list of selected gems to the scope', function () {
     $httpBackend.flush();
-    expect(scope.gems.length).toBe(2);
+    expect(scope.gems.length).toBe(1);
   });
 });
