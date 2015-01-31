@@ -2,7 +2,8 @@
 
 angular.module('rubygemsTrackerApp.services', []);
 angular.module('rubygemsTrackerApp.controllers', [
-  'rubygemsTrackerApp.services'
+  'rubygemsTrackerApp.services',
+  'chart.js'
 ]);
 
 angular.module('rubygemsTrackerApp', [
