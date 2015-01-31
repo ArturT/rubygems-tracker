@@ -11,9 +11,7 @@ angular.module('rubygemsTrackerApp.controllers')
     if (gem.gemStatistics.length > 1) {
       $scope.enabledStats = true;
 
-      var recentDownloads = _.map(gem.gemStatistics, function(gemStatistic) {
-        return gemStatistic.recentDownloads;
-      });
+      var recentDownloads = _.map(gem.gemStatistics, 'recentDownloads');
 
       var dates = _.map(gem.gemStatistics, function(gemStatistic) {
         return gemStatistic.date.replace(/T.+/, '');
