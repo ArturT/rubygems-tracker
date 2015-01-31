@@ -6,6 +6,8 @@
 'use strict';
 
 var Gem = require('../api/gem/gem.model');
+var DateService = require('../services/date.service');
+var _ = require('lodash');
 
 /*
 var Thing = require('../api/thing/thing.model');
@@ -39,13 +41,35 @@ var gemNames = ['knapsack'];
 for (var index in gemNames) {
   var gemName = gemNames[index];
 
-  Gem.find({ name: gemName }, function(err, gems) {
-    if (err) {
-      return err;
-    } else if (gems.length == 0) {
-      Gem.create({ name: gemName, totalDownloads: 0 });
-    } else {
-      console.log('Seed:', 'Gem ' + gemName + ' already exists.');
-    }
+  Gem.find({ name: gemName }).remove(function() {
+    var gemStatistics = []
+
+    var dateRange = DateService.dateRange('2015-01-10', '2015-03-06');
+    //var dateRange = DateService.dateRange('2015-01-10', '2015-01-13');
+    //console.log(dateRange);
+
+    var recentDownloads = 0;
+    var currentTotalDownloads = 0;
+    var lastGemStatistic;
+    _(dateRange).forEach(function (date) {
+      lastGemStatistic = _.last(gemStatistics);
+      if (lastGemStatistic) {
+        // add random between 1 and 100
+        currentTotalDownloads += Math.floor((Math.random() * 100) + 1);
+        recentDownloads = currentTotalDownloads - lastGemStatistic.totalDownloads;
+      }
+
+      gemStatistics.push({
+        totalDownloads: currentTotalDownloads,
+        recentDownloads: recentDownloads,
+        date: date
+      })
+    });
+
+    Gem.create({
+      name: gemName,
+      totalDownloads: 0,
+      gemStatistics: gemStatistics
+    });
   });
 }

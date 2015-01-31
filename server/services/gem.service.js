@@ -6,7 +6,7 @@ var DateService = require('./date.service');
 
 module.exports = {
   updateGemStats: function(gem) {
-    var today = DateService.todayWithoutHours();
+    var today = DateService.dayWithoutHours();
     var duplicates = _.filter(gem.gemStatistics, function(gemStatistic) {
       return Date.parse(gemStatistic.date) == today;
     });
