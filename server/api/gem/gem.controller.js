@@ -15,7 +15,7 @@ var GemService = require('../../services/gem.service');
 
 // Get list of gems
 exports.index = function(req, res) {
-  Gem.find(function (err, gems) {
+  Gem.find({}, 'name totalDownloads', function (err, gems) {
     if(err) { return handleError(res, err); }
     return res.json(200, gems);
   });
