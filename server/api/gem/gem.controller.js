@@ -11,6 +11,7 @@ var _ = require('lodash');
 var https = require('https');
 var Gem = require('./gem.model');
 var RubyGemsService = require('../../services/rubygems.service');
+var GemService = require('../../services/gem.service');
 
 // Get list of gems
 exports.index = function(req, res) {
@@ -38,6 +39,7 @@ exports.create = function(req, res) {
 
       Gem.create(newGem, function(err, gem) {
         if(err) { return handleError(res, err); }
+        GemService.updateGemStats(gem);
         return res.json(201, gem);
       });
     },
