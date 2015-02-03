@@ -6,41 +6,49 @@
 </header>
 
 <div class="container">
-  <div class="row">
 
+  <div class="row">
     <div class="col-lg-12" ng-hide="enabledStats">
       <div class="alert alert-warning">
         We need to collect statistics for two days at least before showing more detailed charts.
       </div>
     </div>
+  </div>
 
+  <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Download statistics</h1>
       Total downloads: {{gem.totalDownloads | number}}
     </div>
+  </div>
 
+  <div class="row">
     <div class="col-lg-12">
-      <div class="col-lg-3 col-md-4 col-xs-6">
-        <h4>Start date</h4>
-        <p class="input-group">
-        <input type="text" class="form-control" datepicker-popup="{{datepicker.format}}" ng-model="datepicker.startDate.model" is-open="datepicker.startDate.opened" min-date="datepicker.minDate" max-date="datepicker.maxDate" ng-required="true" />
-        <span class="input-group-btn">
-          <button type="button" class="btn btn-default" ng-click="datepicker.open($event, 'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-        </span>
-        </p>
-      </div>
-
-      <div class="col-lg-3 col-md-4 col-xs-6">
-        <h4>End date</h4>
-        <p class="input-group">
-        <input type="text" class="form-control" datepicker-popup="{{datepicker.format}}" ng-model="datepicker.endDate.model" is-open="datepicker.endDate.opened" min-date="datepicker.minDate" max-date="datepicker.maxDate" ng-required="true" />
-        <span class="input-group-btn">
-          <button type="button" class="btn btn-default" ng-click="datepicker.open($event, 'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
-        </span>
-        </p>
-      </div>
+      <h1 class="page-header">Select date range to refresh stats</h1>
     </div>
 
+    <div class="col-lg-3 col-md-4 col-xs-6">
+      <h4>Start date</h4>
+      <p class="input-group">
+      <input type="text" class="form-control" datepicker-popup="{{datepicker.format}}" ng-model="datepicker.startDate.model" is-open="datepicker.startDate.opened" min-date="datepicker.minDate" max-date="datepicker.maxDate" ng-required="true" />
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="datepicker.open($event, 'startDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+      </p>
+    </div>
+
+    <div class="col-lg-3 col-md-4 col-xs-6">
+      <h4>End date</h4>
+      <p class="input-group">
+      <input type="text" class="form-control" datepicker-popup="{{datepicker.format}}" ng-model="datepicker.endDate.model" is-open="datepicker.endDate.opened" min-date="datepicker.minDate" max-date="datepicker.maxDate" ng-required="true" />
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="datepicker.open($event, 'endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-lg-12" ng-show="enabledStats">
       <h1 class="page-header">Recent downloads</h1>
 
@@ -51,6 +59,6 @@
         series="recentDownloads.series">
       </canvas>
     </div>
-
   </div>
+
 </div>
