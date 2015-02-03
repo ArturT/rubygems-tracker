@@ -44,7 +44,7 @@ for (var index in gemNames) {
   Gem.find({ name: gemName }).remove(function() {
     var gemStatistics = []
 
-    var dateRange = DateService.dateRange('2015-01-10', '2015-03-06');
+    var dateRange = DateService.dateRange('2014-12-06', '2015-02-03');
     //var dateRange = DateService.dateRange('2015-01-10', '2015-01-13');
     //console.log(dateRange);
 
