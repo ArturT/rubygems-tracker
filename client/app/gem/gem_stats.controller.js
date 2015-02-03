@@ -21,4 +21,20 @@ angular.module('rubygemsTrackerApp.controllers')
       $scope.recentDownloads.series = ['Recent downloads'];
       $scope.recentDownloads.data = [recentDownloads];
     }
+
+    $scope.datepicker = {};
+    $scope.datepicker.startDate = {};
+    $scope.datepicker.endDate = {};
+    $scope.datepicker.format = 'yyyy-MM-dd';
+
+    $scope.datepicker.open = function($event, dateType) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      if (dateType == 'startDate') {
+        $scope.datepicker.startDate.opened = true;
+      } else if (dateType == 'endDate') {
+        $scope.datepicker.endDate.opened = true;
+      }
+    };
+
   });
