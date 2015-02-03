@@ -25,13 +25,9 @@ angular.module('rubygemsTrackerApp.controllers')
       $scope.datepicker = {};
       $scope.datepicker.startDate = {};
       $scope.datepicker.endDate = {};
-      $scope.datepicker.format = 'yyyy-MM-dd';
-
       $scope.datepicker.minDate = dates[0];
-      $scope.datepicker.startDate.model = $scope.datepicker.minDate;
-
       $scope.datepicker.maxDate = _(dates).last();
-      $scope.datepicker.endDate.model = $scope.datepicker.maxDate;
+      $scope.datepicker.format = 'yyyy-MM-dd';
 
       $scope.datepicker.open = function($event, dateType) {
         $event.preventDefault();
@@ -42,6 +38,27 @@ angular.module('rubygemsTrackerApp.controllers')
           $scope.datepicker.endDate.opened = true;
         }
       };
+
+      var updateGraphs = function() {
+        // TODO
+        var startDate = $scope.datepicker.startDate.model;
+        var endDate = $scope.datepicker.endDate.model;
+        console.log(startDate, endDate);
+      };
+
+      $scope.datepicker.lastDays = function(days) {
+        var startDate;
+        if (days == 'all') {
+          startDate = $scope.datepicker.minDate;
+        } else {
+          startDate = _.takeRight(dates, days)[0];
+        }
+        $scope.datepicker.startDate.model = startDate;
+        $scope.datepicker.endDate.model = $scope.datepicker.maxDate;
+        updateGraphs();
+      };
+      // set default date range to last 30 days
+      $scope.datepicker.lastDays(30);
     }
 
   });
