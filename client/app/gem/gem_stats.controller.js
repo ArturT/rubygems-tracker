@@ -40,10 +40,22 @@ angular.module('rubygemsTrackerApp.controllers')
       };
 
       var updateGraphs = function() {
-        // TODO
-        var startDate = $scope.datepicker.startDate.model;
-        var endDate = $scope.datepicker.endDate.model;
-        console.log(startDate, endDate);
+        var startDate = new Date($scope.datepicker.startDate.model);
+        var endDate = new Date($scope.datepicker.endDate.model);
+
+        var recentDownloads = {};
+        recentDownloads.labels = [];
+        recentDownloads.data = [];
+
+        _.forEach(gem.gemStatistics, function(gemStatistic) {
+          if (new Date(gemStatistic.date) >= startDate && new Date(gemStatistic.date) <= endDate) {
+            recentDownloads.labels.push(gemStatistic.date.replace(/T.+/, ''));
+            recentDownloads.data.push(gemStatistic.recentDownloads);
+          }
+        });
+
+        $scope.recentDownloads.labels = recentDownloads.labels;
+        $scope.recentDownloads.data = [recentDownloads.data];
       };
 
       $scope.datepicker.lastDays = function(days) {
