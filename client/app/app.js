@@ -1,8 +1,10 @@
 'use strict';
 
 angular.module('rubygemsTrackerApp.services', []);
+angular.module('rubygemsTrackerApp.factories', []);
 angular.module('rubygemsTrackerApp.controllers', [
   'rubygemsTrackerApp.services',
+  'rubygemsTrackerApp.factories',
   'chart.js'
 ]);
 
