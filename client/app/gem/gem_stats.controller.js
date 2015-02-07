@@ -80,12 +80,8 @@ angular.module('rubygemsTrackerApp.controllers')
       // set default date range to last 30 days
       $scope.datepicker.lastDays(30);
 
-      $scope.$watch('datepicker.startDate.model', function(newValue, oldValue) {
-        updateGraphs();
-      });
-      $scope.$watch('datepicker.endDate.model', function(newValue, oldValue) {
-        updateGraphs();
-      });
+      $scope.$watch('datepicker.startDate.model', updateGraphs);
+      $scope.$watch('datepicker.endDate.model', updateGraphs);
     }
 
   });
