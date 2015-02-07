@@ -7,6 +7,7 @@ angular.module('rubygemsTrackerApp.controllers')
     $scope.gem = gem;
     $scope.enabledStats = false;
     $scope.recentDownloads = {};
+    $scope.totalDownloads = {};
 
     if (gem.gemStatistics.length > 1) {
       $scope.enabledStats = true;
@@ -23,6 +24,15 @@ angular.module('rubygemsTrackerApp.controllers')
         'Recent downloads',
         'recentDownloads'
       );
+      gemStatsFactory.prepareChart(
+        $scope.totalDownloads,
+        'Total downloads',
+        'totalDownloads'
+      );
+      var updateCharts = function () {
+        gemStatsFactory.updateChart($scope.recentDownloads, 'recentDownloads');
+        gemStatsFactory.updateChart($scope.totalDownloads, 'totalDownloads');
+      };
 
       $scope.datepicker.startDate = {};
       $scope.datepicker.endDate = {};
@@ -49,17 +59,13 @@ angular.module('rubygemsTrackerApp.controllers')
         }
         $scope.datepicker.startDate.model = new Date(startDate);
         $scope.datepicker.endDate.model = new Date($scope.datepicker.maxDate);
-        gemStatsFactory.updateChart($scope.recentDownloads, 'recentDownloads');
+        updateCharts();
       };
       // set default date range to last 30 days
       $scope.datepicker.lastDays(30);
 
-      $scope.$watch('datepicker.startDate.model', function () {
-        gemStatsFactory.updateChart($scope.recentDownloads, 'recentDownloads');
-      });
-      $scope.$watch('datepicker.endDate.model', function () {
-        gemStatsFactory.updateChart($scope.recentDownloads, 'recentDownloads');
-      });
+      $scope.$watch('datepicker.startDate.model', updateCharts);
+      $scope.$watch('datepicker.endDate.model', updateCharts);
     }
 
   });
