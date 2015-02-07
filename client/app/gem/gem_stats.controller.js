@@ -40,15 +40,23 @@ angular.module('rubygemsTrackerApp.controllers')
       };
 
       var updateGraphs = function() {
-        var startDate = new Date($scope.datepicker.startDate.model);
-        var endDate = new Date($scope.datepicker.endDate.model);
+        var startDate = $scope.datepicker.startDate.model;
+        startDate = startDate.toJSON().replace(/T.+/, '');
+        startDate = Date.parse(startDate);
+
+        var endDate = $scope.datepicker.endDate.model;
+        endDate = endDate.toJSON().replace(/T.+/, '');
+        endDate = Date.parse(endDate);
 
         var recentDownloads = {};
         recentDownloads.labels = [];
         recentDownloads.data = [];
 
         _.forEach(gem.gemStatistics, function(gemStatistic) {
-          if (new Date(gemStatistic.date) >= startDate && new Date(gemStatistic.date) <= endDate) {
+          var date = gemStatistic.date.replace(/T.+/, '');
+          date = Date.parse(date);
+
+          if (date >= startDate && date <= endDate) {
             recentDownloads.labels.push(gemStatistic.date.replace(/T.+/, ''));
             recentDownloads.data.push(gemStatistic.recentDownloads);
           }
@@ -65,12 +73,19 @@ angular.module('rubygemsTrackerApp.controllers')
         } else {
           startDate = _.takeRight(dates, days)[0];
         }
-        $scope.datepicker.startDate.model = startDate;
-        $scope.datepicker.endDate.model = $scope.datepicker.maxDate;
+        $scope.datepicker.startDate.model = new Date(startDate);
+        $scope.datepicker.endDate.model = new Date($scope.datepicker.maxDate);
         updateGraphs();
       };
       // set default date range to last 30 days
       $scope.datepicker.lastDays(30);
+
+      $scope.$watch('datepicker.startDate.model', function(newValue, oldValue) {
+        updateGraphs();
+      });
+      $scope.$watch('datepicker.endDate.model', function(newValue, oldValue) {
+        updateGraphs();
+      });
     }
 
   });
