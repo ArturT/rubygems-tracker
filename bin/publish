@@ -1,0 +1,16 @@
+#!/bin/bash
+
+current_dir=`pwd`
+date=`date -u`
+
+grunt build
+cd dist
+
+git checkout master
+git add -A
+git commit -m "Build $date"
+git push openshift master
+
+cd $current_dir
+
+echo Done!

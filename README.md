@@ -52,6 +52,10 @@ In case of error: "Could not find chromedriver" try:
     # story copy on github repo https://github.com/ArturT/rubygems-tracker-dist
     $ git push origin master
 
+### bin/publish
+
+Use `bin/publish` to build project and publish it on production.
+
 # Tips
 
 ## Debugging
