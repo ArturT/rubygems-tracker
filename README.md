@@ -71,3 +71,9 @@ Run e2e tests with different port if you are running `grunt serve` at the same t
     $ PORT=9001 grunt test:e2e
 
 See config in `Gruntfile.js`.
+
+## Keep OpenShift alive
+
+Add to crontab on another server:
+
+    55 * * * * curl -i -H "Accept: application/json" http://rubygemstracker-arturt.rhcloud.com/api/heartbeat > /dev/null 2>&1
