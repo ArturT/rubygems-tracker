@@ -1,4 +1,4 @@
-# ![Rubygems Tracker](client/assets/images/ruby-gem.png)
+![Rubygems Tracker](client/assets/images/ruby-gem.png)
 
 # Rubygems Tracker
 
