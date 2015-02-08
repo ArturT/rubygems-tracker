@@ -6,6 +6,14 @@
 
 Track gems download statistics.
 
+# Demo
+
+Actually it's production website where you can see statistics for one of my gem:
+
+http://rubygemstracker-arturt.rhcloud.com/gems/knapsack
+
+Feel free to add your gem there and start tracking stats for it. Enjoy!
+
 # Usage
 
 ## Dependencies
