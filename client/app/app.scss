@@ -19,6 +19,11 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
   margin-top: 1em;
 }
 
+.github-stars {
+  margin-top: 0.7em;
+  margin-left: 1em;
+}
+
 // Component styles are injected through grunt
 // injector
 @import 'main/main.scss';
