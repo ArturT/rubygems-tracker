@@ -1,6 +1,6 @@
 ![Rubygems Tracker](client/assets/images/ruby-gem.png)
 
-# Rubygems Tracker
+# RubyGems Tracker
 
 [![Circle CI](https://circleci.com/gh/ArturT/rubygems-tracker.svg?style=svg)](https://circleci.com/gh/ArturT/rubygems-tracker)
 
