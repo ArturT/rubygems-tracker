@@ -9,6 +9,7 @@ cd dist
 git checkout master
 git add -A
 git commit -m "Build $date"
+git push origin master
 git push openshift master
 
 cd $current_dir
