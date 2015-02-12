@@ -80,6 +80,12 @@ https://developers.openshift.com/en/managing-client-tools.html
     $ grunt test:client
     $ grunt test:e2e
 
+    # all unit tests karma & mochaTest. It uses karma-jasmine as assertion lib.
+    $ grunt test:unit
+
+    # only tests for server/*. It uses chai as assertion lib.
+    $ grunt mochaTest
+
 Run e2e tests with different port if you are running `grunt serve` at the same time.
 
     $ PORT=9001 grunt test:e2e
