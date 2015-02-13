@@ -19,6 +19,18 @@ describe('DateService', function() {
         expect(DateService.dayWithoutHours()).to.equal(today);
       });
     });
+
+    describe('when extraDays provided', function() {
+      it('returns date as Integer', function() {
+        var customDate = '2015-02-12';
+        var expected = 1423699200000;
+        expect(DateService.dayWithoutHours(customDate, 0)).to.equal(expected);
+        customDate = '2015-02-13';
+        expect(DateService.dayWithoutHours(customDate, -1)).to.equal(expected);
+        customDate = '2015-02-10';
+        expect(DateService.dayWithoutHours(customDate, 2)).to.equal(expected);
+      });
+    });
   });
 
   describe('addDays', function() {

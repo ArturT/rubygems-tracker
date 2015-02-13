@@ -8,13 +8,19 @@ var addDays = function(days) {
 };
 
 module.exports = {
-  dayWithoutHours: function (customDate) {
+  dayWithoutHours: function (customDate, extraDays) {
     var date;
+
     if (customDate) {
       date = new Date(customDate);
     } else {
       date = new Date();
     }
+
+    if (extraDays) {
+      date = addDays.call(date, extraDays);
+    }
+
     var yyyyMmDd = date.toISOString().replace(/T.+/, '');
     return Date.parse(yyyyMmDd);
   },
