@@ -17,7 +17,7 @@ var updateStatsForAllGems = function() {
 //updateStatsForAllGems();
 
 var gemsStatisticsJob = new CronJob({
-  cronTime: '0 0 * * * *',
+  cronTime: '1 0,30 * * * *',
   //cronTime: '*/5 * * * * *',
   onTick: updateStatsForAllGems
 });

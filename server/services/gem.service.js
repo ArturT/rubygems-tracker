@@ -6,9 +6,9 @@ var DateService = require('./date.service');
 
 module.exports = {
   updateGemStats: function(gem) {
-    var today = DateService.dayWithoutHours();
+    var dayWithoutHours = DateService.yesterdayWithoutHours();
     var duplicates = _.filter(gem.gemStatistics, function(gemStatistic) {
-      return Date.parse(gemStatistic.date) == today;
+      return Date.parse(gemStatistic.date) == dayWithoutHours;
     });
 
     if (duplicates.length == 0) {
@@ -38,7 +38,7 @@ module.exports = {
         }
       });
     } else {
-      console.log(gem.name + ' record already has gemStatistic for today!');
+      console.log(gem.name + ' record already has gemStatistic for day! ' + dayWithoutHours);
     }
   }
 };

@@ -17,7 +17,7 @@ var GemStatisticSchema = new Schema({
   date: {
     type: Date,
     required: true,
-    default: DateService.dayWithoutHours,
+    default: DateService.yesterdayWithoutHours,
   }
 });
 
