@@ -7,22 +7,28 @@ var addDays = function(days) {
   return dat;
 };
 
+var dayWithoutHours = function (customDate, extraDays) {
+  var date;
+
+  if (customDate) {
+    date = new Date(customDate);
+  } else {
+    date = new Date();
+  }
+
+  if (extraDays) {
+    date = addDays.call(date, extraDays);
+  }
+
+  var yyyyMmDd = date.toISOString().replace(/T.+/, '');
+  return Date.parse(yyyyMmDd);
+};
+
 module.exports = {
-  dayWithoutHours: function (customDate, extraDays) {
-    var date;
+  dayWithoutHours: dayWithoutHours,
 
-    if (customDate) {
-      date = new Date(customDate);
-    } else {
-      date = new Date();
-    }
-
-    if (extraDays) {
-      date = addDays.call(date, extraDays);
-    }
-
-    var yyyyMmDd = date.toISOString().replace(/T.+/, '');
-    return Date.parse(yyyyMmDd);
+  yesterdayWithoutHours: function () {
+    return dayWithoutHours(undefined, -1);
   },
 
   addDays: addDays,

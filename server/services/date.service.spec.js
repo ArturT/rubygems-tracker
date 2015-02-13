@@ -33,6 +33,14 @@ describe('DateService', function() {
     });
   });
 
+  describe('yesterdayWithoutHours', function() {
+    it('returns yesterday date as Integer', function() {
+      var today = Date.parse((new Date()).toISOString().replace(/T.+/, ''));
+      var yesterday = today - 3600*24*1000;
+      expect(DateService.yesterdayWithoutHours()).to.equal(yesterday);
+    });
+  });
+
   describe('addDays', function() {
     var day = new Date('2015-02-13');
 
