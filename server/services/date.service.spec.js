@@ -22,8 +22,16 @@ describe('DateService', function() {
   });
 
   describe('addDays', function() {
+    var day = new Date('2015-02-13');
+
     it('adds days to the date', function() {
-      // TODO
+      expect(DateService.addDays.call(day, 1).toString()).to.equal('Sat Feb 14 2015 01:00:00 GMT+0100 (CET)');
+      expect(DateService.addDays.call(day, 30).toString()).to.equal('Sun Mar 15 2015 01:00:00 GMT+0100 (CET)');
+    });
+
+    it('removes days from the date', function() {
+      expect(DateService.addDays.call(day, -1).toString()).to.equal('Thu Feb 12 2015 01:00:00 GMT+0100 (CET)');
+      expect(DateService.addDays.call(day, -13).toString()).to.equal('Sat Jan 31 2015 01:00:00 GMT+0100 (CET)');
     });
   });
 
