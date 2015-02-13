@@ -5,13 +5,18 @@
 
 'use strict';
 
+var RELOAD_SEED_ON_CHANGE = false;
 var Gem = require('../api/gem/gem.model');
 var DateService = require('../services/date.service');
 var _ = require('lodash');
 
+var gemNames = [];
+
 // Create gems if missing
-// Provide list of gems we would like to track
-var gemNames = ['knapsack'];
+if (RELOAD_SEED_ON_CHANGE) {
+  // Provide list of gems we would like to track
+  gemNames = ['knapsack'];
+}
 
 for (var index in gemNames) {
   var gemName = gemNames[index];
