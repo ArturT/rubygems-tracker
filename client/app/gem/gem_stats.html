@@ -29,6 +29,9 @@
         <dt>Current gem version</dt>
         <dd>{{gemDetails.version || '-'}}</dd>
 
+        <dt>Current gem built at</dt>
+        <dd>{{(gemBuiltAt | date) || '-'}}</dd>
+
         <dt>Current version downloads</dt>
         <dd>{{(gemDetails.version_downloads | number) || '-'}}</dd>
 

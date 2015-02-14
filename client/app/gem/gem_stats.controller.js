@@ -82,6 +82,8 @@ angular.module('rubygemsTrackerApp.controllers')
     });
 
     GemService.getVersions(gem.name).success(function(data) {
+      $scope.gemBuiltAt = data[0].built_at;
+
       var gemVersionsChart = {
         labels: [],
         data: [],
