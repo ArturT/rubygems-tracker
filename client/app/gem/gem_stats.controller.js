@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('rubygemsTrackerApp.controllers')
-  .controller('GemStatsCtrl', function ($scope, $http, promiseGem, GemStatsFactory) {
+  .controller('GemStatsCtrl', function ($scope, $http, promiseGem, GemStatsFactory, GemService) {
     var gem = promiseGem.data;
 
     $scope.gem = gem;
+    $scope.gemTotalDownloads = gem.totalDownloads;
     $scope.enabledStats = false;
     $scope.recentDownloads = {};
     $scope.totalDownloads = {};
@@ -75,4 +76,7 @@ angular.module('rubygemsTrackerApp.controllers')
       $scope.$watch('datepicker.endDate.opened', openedHandler);
     }
 
+    GemService.getDetails(gem.name).success(function(data) {
+      $scope.gemTotalDownloads = data.downloads;
+    });
   });
