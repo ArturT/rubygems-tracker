@@ -1,7 +1,7 @@
 <header class="hero-unit" id="banner">
   <div class="container">
     <h1>{{gem.name}}</h1>
-    <p class="lead">Gem statistics.</p>
+    <p class="lead">{{gemDetails.info}}</p>
   </div>
 </header>
 
@@ -17,8 +17,54 @@
 
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Download statistics</h1>
-      Total downloads: {{gemTotalDownloads | number}}
+      <h1 class="page-header">Basic gem info</h1>
+    </div>
+
+    <div class="col-lg-5">
+      <dl class="dl-horizontal dt-long">
+        <dt>Total downloads</dt>
+        <dd>{{gemTotalDownloads | number}}</dd>
+
+        <dt>Current gem version</dt>
+        <dd>{{gemDetails.version || '-'}}</dd>
+
+        <dt>Current version downloads</dt>
+        <dd>{{(gemDetails.version_downloads | number) || '-'}}</dd>
+
+        <dt>Platform</dt>
+        <dd>{{gemDetails.platform || '-'}}</dd>
+
+        <dt>Authors</dt>
+        <dd>{{gemDetails.authors || '-'}}</dd>
+      </dl>
+    </div>
+
+    <div class="col-lg-7">
+      <dl class="dl-horizontal dt-long">
+        <dt>Project URL</dt>
+        <dd><a ng-href="{{gemDetails.project_uri}}">{{gemDetails.project_uri || '-'}}</a></dd>
+
+        <dt>Gem URL</dt>
+        <dd><a ng-href="{{gemDetails.gem_uri}}">{{gemDetails.gem_uri || '-'}}</a></dd>
+
+        <dt>Homepage URL</dt>
+        <dd><a ng-href="{{gemDetails.homepage_uri}}">{{gemDetails.homepage_uri || '-'}}</a></dd>
+
+        <dt>Wiki URL</dt>
+        <dd><a ng-href="{{gemDetails.wiki_uri}}">{{gemDetails.wiki_uri || '-'}}</a></dd>
+
+        <dt>Documentation URL</dt>
+        <dd><a ng-href="{{gemDetails.documentation_uri}}">{{gemDetails.documentation_uri || '-'}}</a></dd>
+
+        <dt>Mailing list URL</dt>
+        <dd><a ng-href="{{gemDetails.mailing_list_uri}}">{{gemDetails.mailing_list_uri || '-'}}</a></dd>
+
+        <dt>Source code URL</dt>
+        <dd><a ng-href="{{gemDetails.source_code_uri}}">{{gemDetails.source_code_uri || '-'}}</a></dd>
+
+        <dt>Bug tracker URL</dt>
+        <dd><a ng-href="{{gemDetails.bug_tracker_uri}}">{{gemDetails.bug_tracker_uri || '-'}}</a></dd>
+      </dl>
     </div>
   </div>
 

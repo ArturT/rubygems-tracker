@@ -78,5 +78,6 @@ angular.module('rubygemsTrackerApp.controllers')
 
     GemService.getDetails(gem.name).success(function(data) {
       $scope.gemTotalDownloads = data.downloads;
+      $scope.gemDetails = data;
     });
   });
