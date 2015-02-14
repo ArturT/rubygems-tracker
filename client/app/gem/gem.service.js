@@ -12,6 +12,14 @@ angular.module('rubygemsTrackerApp.services')
       return $http.get(endpoint + '/' + gemName);
     };
 
+    this.getDetails = function(gemName) {
+      return $http.get(endpoint + '/' + gemName + '/details');
+    };
+
+    this.getVersions = function(gemName) {
+      return $http.get(endpoint + '/' + gemName + '/versions');
+    };
+
     this.create = function(gemName) {
       return $http.post(endpoint, { name: gemName });
     };

@@ -38,6 +38,35 @@ describe('Service: GemService', function () {
     });
   });
 
+  describe('#getDetails', function () {
+    var gem = { name: 'knapsack' };
+    var result;
+
+    it('returns gem details', function () {
+      $httpBackend.expectGET('/api/gems/' + gem.name + '/details').respond(gem);
+      GemService.getDetails(gem.name).success(function(data) {
+        result = data;
+      });
+      $httpBackend.flush();
+      expect(angular.equals(result, gem)).toBe(true);
+    });
+  });
+
+  describe('#getVersions', function () {
+    var gemName = 'knapsack';
+    var gemVersions = [{ number: '1.0.0' }, { number: '1.0.1' }];
+    var result;
+
+    it('returns gem versions', function () {
+      $httpBackend.expectGET('/api/gems/' + gemName + '/versions').respond(gemVersions);
+      GemService.getVersions(gemName).success(function(data) {
+        result = data;
+      });
+      $httpBackend.flush();
+      expect(angular.equals(result, gemVersions)).toBe(true);
+    });
+  });
+
   describe('#create', function () {
     var gem = { name: 'knapsack' };
     var result;
