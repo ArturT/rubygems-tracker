@@ -80,4 +80,28 @@ angular.module('rubygemsTrackerApp.controllers')
       $scope.gemTotalDownloads = data.downloads;
       $scope.gemDetails = data;
     });
+
+    GemService.getVersions(gem.name).success(function(data) {
+      var gemVersionsChart = {
+        labels: [],
+        data: [],
+        type: 'PolarArea'
+      };
+
+      var sortedData = _.sortBy(data, _.property('downloads_count')).reverse();
+
+      _.forEach(sortedData, function (gemVersion) {
+        if (gemVersionsChart.labels.length < 6) {
+          gemVersionsChart.labels.push(gemVersion.number);
+          gemVersionsChart.data.push(gemVersion.downloads_count);
+        }
+      });
+
+      gemVersionsChart.toggle = function () {
+        $scope.gemVersionsChart.type = $scope.gemVersionsChart.type === 'PolarArea' ?
+          'Pie' : 'PolarArea';
+      };
+
+      $scope.gemVersionsChart = gemVersionsChart;
+    });
   });
