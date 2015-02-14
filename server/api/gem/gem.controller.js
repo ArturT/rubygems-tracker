@@ -74,6 +74,24 @@ exports.show = function(req, res) {
   });
 };
 
+exports.details = function(req, res) {
+  var errorHandler = function(message) {
+    return res.json(400, {
+      errors: { name: { message: message } }
+    });
+  };
+
+  RubyGemsService.getGem({
+    gemName: req.params.name,
+    onSuccess: function (gemData) {
+      return res.json(200, gemData);
+    },
+    onGemNotFound: errorHandler,
+    onInvalidJSON: errorHandler,
+    onError: errorHandler
+  });
+};
+
 function handleError(res, err) {
   return res.send(500, err);
 }
