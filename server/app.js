@@ -6,6 +6,7 @@
 
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+process.env.TZ = 'Europe/Warsaw';
 
 var express = require('express');
 var mongoose = require('mongoose');
