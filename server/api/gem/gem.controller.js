@@ -75,21 +75,39 @@ exports.show = function(req, res) {
 };
 
 exports.details = function(req, res) {
-  var errorHandler = function(message) {
-    return res.json(400, {
-      errors: { name: { message: message } }
-    });
-  };
-
   RubyGemsService.getGem({
     gemName: req.params.name,
     onSuccess: function (gemData) {
       return res.json(200, gemData);
     },
-    onGemNotFound: errorHandler,
-    onInvalidJSON: errorHandler,
-    onError: errorHandler
+    onGemNotFound: handleRubyGemsError,
+    onInvalidJSON: handleRubyGemsError,
+    onError: handleRubyGemsError
   });
+
+  function handleRubyGemsError(message) {
+    return res.json(400, {
+      errors: { name: { message: message } }
+    });
+  }
+};
+
+exports.versions = function(req, res) {
+  RubyGemsService.getVersions({
+    gemName: req.params.name,
+    onSuccess: function (gemVersions) {
+      return res.json(200, gemVersions);
+    },
+    onGemNotFound: handleRubyGemsError,
+    onInvalidJSON: handleRubyGemsError,
+    onError: handleRubyGemsError
+  });
+
+  function handleRubyGemsError(message) {
+    return res.json(400, {
+      errors: { name: { message: message } }
+    });
+  }
 };
 
 function handleError(res, err) {
