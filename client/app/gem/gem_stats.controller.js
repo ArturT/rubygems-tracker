@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('rubygemsTrackerApp.controllers')
-  .controller('GemStatsCtrl', function ($scope, $http, promiseGem, GemStatsFactory, GemService) {
+  .controller('GemStatsCtrl', function ($scope, $http, promiseGem, GemStatsFactory, GemService, DateService) {
     var gem = promiseGem.data;
 
     $scope.gem = gem;
@@ -94,7 +94,8 @@ angular.module('rubygemsTrackerApp.controllers')
 
       _.forEach(sortedData, function (gemVersion) {
         if (gemVersionsChart.labels.length < 6) {
-          gemVersionsChart.labels.push(gemVersion.number);
+          var label = gemVersion.number + ' (Released ' + DateService.cutDate(gemVersion.built_at) + ')';
+          gemVersionsChart.labels.push(label);
           gemVersionsChart.data.push(gemVersion.downloads_count);
         }
       });
