@@ -132,20 +132,20 @@
       </div>
     </div>
 
-    <div class="row" ng-show="gemDetails">
-      <div class="col-lg-12">
-        <h1 class="page-header">The most popular gem versions</h1>
+  </div>
 
-        <button type="button" class="btn btn-danger pull-right" ng-click="gemVersionsChart.toggle()">Toggle {{gemVersionsChart.type}}</button>
+  <div class="row" ng-show="gemDetails">
+    <div class="col-lg-12">
+      <h1 class="page-header">The most popular gem versions</h1>
 
-        <canvas id="base" class="chart-base"
-          chart-type="gemVersionsChart.type"
-          data="gemVersionsChart.data"
-          labels="gemVersionsChart.labels"
-          legend="true"></canvas>
-      </div>
+      <button type="button" class="btn btn-danger pull-right" ng-click="gemVersionsChart.toggle()">Toggle {{gemVersionsChart.type}}</button>
+
+      <canvas id="base" class="chart-base"
+        chart-type="gemVersionsChart.type"
+        data="gemVersionsChart.data"
+        labels="gemVersionsChart.labels"
+        legend="true"></canvas>
     </div>
-
   </div>
 
 </div>
