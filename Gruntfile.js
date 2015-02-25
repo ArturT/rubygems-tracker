@@ -228,19 +228,17 @@ module.exports = function (grunt) {
     },
 
     // Renames files for browser caching purposes
-    rev: {
+    filerev: {
       dist: {
-        files: {
-          src: [
-            '<%= yeoman.dist %>/public/{,*/}*.js',
-            '<%= yeoman.dist %>/public/{,*/}*.css',
-            '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-            '<%= yeoman.dist %>/public/assets/fonts/*',
-            '!<%= yeoman.dist %>/public/bower_components/Chart.js',
-            '!<%= yeoman.dist %>/public/bower_components/angular-chart.js'
-          ]
-        }
-      }
+      	src: [
+          '<%= yeoman.dist %>/public/{,*/}*.js',
+          '<%= yeoman.dist %>/public/{,*/}*.css',
+          '<%= yeoman.dist %>/public/assets/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+          '<%= yeoman.dist %>/public/assets/fonts/*',
+          //'<%= yeoman.dist %>/public/bower_components/Chart.js',
+          //'<%= yeoman.dist %>/public/bower_components/angular-chart.js'
+        ]
+  	  }
     },
 
     // Reads HTML for usemin blocks to enable smart builds that automatically
@@ -259,8 +257,8 @@ module.exports = function (grunt) {
       css: ['<%= yeoman.dist %>/public/{,*/}*.css'],
       js: [
         '<%= yeoman.dist %>/public/{,*/}*.js',
-        '!<%= yeoman.dist %>/public/bower_components/Chart.js',
-        '!<%= yeoman.dist %>/public/bower_components/angular-chart.js'
+        //'<%= yeoman.dist %>/public/bower_components/Chart.js',
+        //'<%= yeoman.dist %>/public/bower_components/angular-chart.js'
       ],
       options: {
         assetsDirs: [
@@ -662,7 +660,7 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
-    'rev',
+    'filerev',
     'usemin'
   ]);
 
