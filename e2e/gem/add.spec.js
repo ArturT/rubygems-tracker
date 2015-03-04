@@ -15,8 +15,6 @@ describe('Add Gem View', function() {
   describe('when success', function () {
     it('adds knapsack gem', function () {
       page.addGem('knapsack');
-
-      browser.waitForAngular();
       expect(page.successMessage.getText()).toBe('Thanks!');
       expect(page.gemLink.getAttribute('href')).toMatch(/\/gems\/knapsack$/);
     });
