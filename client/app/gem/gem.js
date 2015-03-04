@@ -22,5 +22,10 @@ angular.module('rubygemsTrackerApp')
             return GemService.get($stateParams.name);
           }
         }
+      })
+      .state('gemsThanks', {
+        url: '/gems/:name/thanks',
+        templateUrl: 'app/gem/thanks.html',
+        controller: 'GemThanksCtrl'
       });
   });

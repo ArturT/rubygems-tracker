@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('rubygemsTrackerApp.controllers')
-  .controller('GemAddCtrl', function ($scope, $http, GemService) {
+  .controller('GemAddCtrl', function ($scope, $http, $state, GemService) {
     $scope.gemName = '';
-    $scope.savedGem = false;
     $scope.clickedSubmit = false;
     $scope.errors = [];
 
@@ -11,7 +10,7 @@ angular.module('rubygemsTrackerApp.controllers')
       $scope.clickedSubmit = true;
 
       GemService.create($scope.gemName).then(function(response) {
-        $scope.savedGem = true;
+        $state.go('gemsThanks', { name: $scope.gemName });
       }, function(response) {
         $scope.clickedSubmit = false;
 

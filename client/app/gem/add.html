@@ -1,19 +1,11 @@
 <header class="hero-unit" id="banner">
   <div class="container">
-    <div ng-hide="savedGem">
-      <h1>Add your Gem to track it!</h1>
-      <p class="lead">Provide your gem name and we will track download statistics for it.</p>
-    </div>
-
-    <div ng-show="savedGem">
-      <h1 id="successMessage">Thanks!</h1>
-      <p class="lead">The {{gemName}} gem was added to our database.</p>
-      <p><a ng-href="/gems/{{gemName}}" class="btn btn-lg btn-danger" id="gemLink">See stats for {{gemName}}</a></p>
-    </div>
+    <h1>Add your Gem to track it!</h1>
+    <p class="lead">Provide your gem name and we will track download statistics for it.</p>
   </div>
 </header>
 
-<div class="container" ng-hide="savedGem">
+<div class="container">
   <div class="row">
 
     <div class="col-lg-5 col-lg-offset-4">

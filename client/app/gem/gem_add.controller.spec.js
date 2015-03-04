@@ -2,27 +2,30 @@
 
 describe('Controller: GemAddCtrl', function () {
 
-  beforeEach(module('rubygemsTrackerApp.controllers'));
+  beforeEach(module('rubygemsTrackerApp'));
 
   var GemAddCtrl,
       GemService,
       scope,
+      $state,
       $q;
 
-  beforeEach(inject(function (_$q_, $controller, $rootScope, _GemService_) {
+  beforeEach(inject(function (_$q_, $controller, $rootScope, _$state_, _GemService_) {
     $q = _$q_;
+    $state = _$state_;
     GemService = _GemService_;
 
     scope = $rootScope.$new();
     GemAddCtrl = $controller('GemAddCtrl', {
       $scope: scope,
+      $state: $state,
       GemService: GemService
     });
   }));
 
   it('has default values on scope', function () {
     expect(scope.gemName).toEqual('');
-    expect(scope.savedGem).toBe(false);
+    expect(scope.gemName).toEqual('');
     expect(scope.clickedSubmit).toBe(false);
     expect(scope.errors.length).toBe(0);
   });
@@ -35,6 +38,9 @@ describe('Controller: GemAddCtrl', function () {
           deferred.resolve({});
           return deferred.promise;
         });
+
+        spyOn($state, 'go').andCallFake(function(state, params) {});
+
         scope.gemName = 'knapsack';
         scope.addGem();
         scope.$digest();
@@ -42,9 +48,9 @@ describe('Controller: GemAddCtrl', function () {
 
       it('saved gem', function () {
         expect(scope.gemName).toEqual('knapsack');
-        expect(scope.savedGem).toBe(true);
         expect(scope.clickedSubmit).toBe(true);
         expect(scope.errors.length).toBe(0);
+        expect($state.go).toHaveBeenCalledWith('gemsThanks', { name: 'knapsack' });
       });
     });
 
@@ -65,7 +71,6 @@ describe('Controller: GemAddCtrl', function () {
 
       it('not save gem', function () {
         expect(scope.gemName).toEqual('knapsack');
-        expect(scope.savedGem).toBe(false);
         expect(scope.clickedSubmit).toBe(false);
         expect(scope.errors.length).toBe(1);
         expect(scope.errors[0]).toEqual(errMsg);
