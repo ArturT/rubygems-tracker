@@ -1,6 +1,15 @@
 dependencies:
   pre:
-    - sudo apt-get upgrade google-chrome-stable
+    # latest stable chrome
+    - curl -L -o google-chrome-stable.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - sudo dpkg -i google-chrome-stable.deb
+    # make chrome lxc-friendly
+    - sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
+    - rm google-chrome-stable.deb
+    # downgrade chromedriver
+    - curl -L -o chromedriver.zip "https://chromedriver.storage.googleapis.com/2.12/chromedriver_linux64.zip"
+    - unzip -p chromedriver.zip | sudo tee /usr/local/bin/chromedriver >> /dev/null
+    - sudo chmod +x "/usr/local/bin/chromedriver"
   override:
     - npm install
     - bower install
