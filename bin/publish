@@ -3,7 +3,8 @@
 current_dir=`pwd`
 date=`date -u`
 
-grunt build
+grunt build || { echo 'grunt build failed'; exit 1; }
+
 cd dist
 
 git checkout master
