@@ -4,7 +4,7 @@ dependencies:
     - bower install
     - gem install compass
     - node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update
-    - sudo apt-get upgrade google-chrome-stable
+    - apt-get upgrade google-chrome-stable
 test:
   override:
     - grunt test:server
