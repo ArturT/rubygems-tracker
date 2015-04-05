@@ -32,13 +32,15 @@ module.exports = {
           gem.totalDownloads = currentTotalDownloads;
           gem.save(function(err) {
             if (err) {
-              console.error('[' + new Date() + '] ' + "Couldn't update gem statistics for " + gem.name, err);
+              console.error('[' + new Date() + '] ' + "(-) Couldn't update gem statistics for " + gem.name, err);
+            } else {
+              console.log('[' + new Date() + '] ' + "(+) Updated gem statistics for " + gem.name);
             }
           });
         }
       });
     } else {
-      console.log('[' + new Date() + '] ' + gem.name + ' record already has gemStatistic for today! ');
+      console.log('[' + new Date() + '] (*) ' + gem.name + ' record already has gemStatistic for today! ');
     }
   }
 };
